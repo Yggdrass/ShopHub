@@ -1,12 +1,13 @@
 import React from "react";
-import LogoImage from "../../images/logo_index";
-import Navbar from "../navbar/index";
+import { LogoImage } from "../../images/index.mjs";
+import { Nav } from "../navbar/index";
+import "./Header.module.css";
 
 function Header() {
   return (
     <header>
       <LogoImage />
-      <Navbar />
+      <Nav />
     </header>
   );
 }

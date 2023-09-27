@@ -1,8 +1,9 @@
 import React from "react";
 import Logo from "../../assets/logo.png";
+import styles from "./Images.module.css";
 
 function LogoImage() {
-  return <img src={Logo} alt="Logo" />;
+  return <img src={Logo} alt="Logo" className={styles.headerLogo} />;
 }
 
 export default LogoImage;
