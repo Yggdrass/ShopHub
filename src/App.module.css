@@ -1,0 +1,26 @@
+@font-face {
+  font-family: "Quicksand";
+  font-style: medium;
+  font-weight: 500;
+  src: local("./fonts/Quicksand-Medium.ttf"),
+    url("https://fonts.google.com/specimen/Quicksand?query=quicksand");
+}
+
+.FamilyQuicksand {
+  font-family: "Quicksand", Arial, sans-serif;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
