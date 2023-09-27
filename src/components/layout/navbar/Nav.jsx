@@ -1,29 +1,48 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 
-import styles from "./Nav.module.css";
+const Nav = styled.nav`
+  display: flex;
+  background-color: blue;
+`;
 
-function Nav() {
+const NavUl = styled.ul`
+  cursor: pointer;
+  background-color: red;
+  color: black;
+  margin: 0;
+  padding: 0 0 0 3rem;
+`;
+
+const StyledLink = styled(Link)`
+  color: white;
+  text-decoration: none;
+  margin-right: 3rem;
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  background-color: green;
+`;
+
+function Navbar() {
   return (
-    <nav>
-      <ul>
-        <Link to="/" className={styles.link}>
-          Home
-        </Link>
+    <Nav>
+      <NavUl>
+        <StyledLink to="/">Home</StyledLink>
 
-        <Link to="/Contact" className={styles.link}>
-          Contact Us
-        </Link>
+        <StyledLink to="/Contact">
+          <i class="fa-solid fa-envelope"></i>Contact Us
+        </StyledLink>
 
-        <Link to="/Checkout" className={styles.link}>
-          Checkout
-        </Link>
-      </ul>
-    </nav>
+        <StyledLink to="/Checkout">
+          <i class="fa-solid fa-cart-shopping"></i>Checkout
+        </StyledLink>
+      </NavUl>
+    </Nav>
   );
 }
 
-export default Nav;
+export default Navbar;
 
 // Console.log's for this file:
 
