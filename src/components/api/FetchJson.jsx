@@ -1,28 +1,17 @@
 import React, { useEffect, useState } from "react";
 import "./Product.css";
+import ProductCard from "../ui/ProductCard";
+import { Autocomplete, Box, Stack, TextField } from "@mui/material";
 
 const url = "https://api.noroff.dev/api/v1/online-shop";
 
 function FetchProducts() {
   const [products, setProducts] = useState([]);
   // State for holding our loading state
+  const [text, setText] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   // State for holding our error state
   const [isError, setIsError] = useState(false);
-
-  const ProductCard = () => {
-    return (
-      <div className="result-box">
-        {products.map((product) => (
-          <div className="card">
-            <h2>{product.title}</h2>
-            <img src={product.imageUrl} alt={product.title} />
-            <p>{product.description}</p>
-          </div>
-        ))}
-      </div>
-    );
-  };
 
   useEffect(() => {
     async function getData() {
@@ -33,7 +22,7 @@ function FetchProducts() {
         setIsLoading(true);
         const response = await fetch(url);
         const json = await response.json();
-        //console.log(json);
+        console.log(json);
         setProducts(json);
         // Clear the loading state once we've successfully got our data
         setIsLoading(false);
@@ -48,6 +37,10 @@ function FetchProducts() {
     getData();
   }, []);
 
+  const onChangeHandler = (text) => {
+    setText(text);
+  };
+
   if (isLoading) {
     return <div>Loading posts</div>;
   }
@@ -56,7 +49,32 @@ function FetchProducts() {
     return <div>Error loading data</div>;
   }
 
-  return <ProductCard />;
+  return (
+    <>
+      <Stack sx={{ width: 300, margin: "auto" }}>
+        <Autocomplete
+          id="products_list"
+          getOptionLabel={(products) => `${products.title}`}
+          options={products}
+          sx={{ width: 300 }}
+          isOptionEqualToValue={(option, value) => option.title === value.title}
+          noOptionsText={"No avaliable products by that name"}
+          renderOption={(props, products) => (
+            <Box component="li" {...props} key={products.id}>
+              {products.title}
+            </Box>
+          )}
+          renderInput={(params) => (
+            <TextField {...params} label="Search for products" />
+          )}
+          onChange={(e) => onChangeHandler(e.target.value)}
+        />
+      </Stack>
+      <div>
+        <ProductCard />
+      </div>
+    </>
+  );
 }
 
 export default FetchProducts;
