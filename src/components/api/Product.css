@@ -1,0 +1,24 @@
+img {
+  max-width: 100%;
+}
+
+p {
+  max-width: 28ch;
+}
+
+.card {
+  background-color: rgb(23, 150, 172);
+  max-width: 10rem;
+  padding: 0.8rem 1rem;
+  margin: 1rem auto;
+  border-radius: 15px;
+}
+
+.result-box {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1rem;
+  width: 75rem;
+  margin-top: 2rem;
+}
