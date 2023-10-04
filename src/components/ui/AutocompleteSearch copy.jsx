@@ -8,23 +8,36 @@ import { Link } from "react-router-dom";
 const url = "https://api.noroff.dev/api/v1/online-shop";
 
 function FetchProducts() {
-  const [products, setProducts] = React.useState([]);
+  const [products, setProducts] = useState([]);
   // State for holding our loading state
   const [data, setData] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   // State for holding our error state
   const [isError, setIsError] = useState(false);
 
-  async function fetchData() {
-    const response = await fetch(url);
-    const json = await response.json();
-    console.log(json);
-    setProducts((products) => [...products, response]);
-    return;
-  }
-
   useEffect(() => {
-    fetchData();
+    async function getData() {
+      try {
+        // Reset the error state in case there as an error previously
+        setIsError(false);
+        // Turn on the loading state each time we do an API call
+        setIsLoading(true);
+        const response = await fetch(url);
+        const json = await response.json();
+        console.log(json);
+        setProducts(json);
+        // Clear the loading state once we've successfully got our data
+        setIsLoading(false);
+      } catch (error) {
+        // Clear the loading state if we get an error and then
+        // set our error state to true
+        setIsLoading(false);
+        setIsError(true);
+      }
+    }
+
+    getData();
+    console.log(data);
   }, []);
 
   if (isLoading) {
@@ -34,7 +47,7 @@ function FetchProducts() {
   if (isError) {
     return <div>Error loading data</div>;
   }
-  console.log(products);
+  console.log(products.id);
   return (
     <div>
       <Stack sx={{ width: 300, margin: "auto" }}>

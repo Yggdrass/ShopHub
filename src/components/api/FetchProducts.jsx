@@ -33,7 +33,7 @@ function FetchProducts() {
         setIsLoading(true);
         const response = await fetch(url);
         const json = await response.json();
-        //console.log(json);
+        console.log(json);
         setProducts(json);
         // Clear the loading state once we've successfully got our data
         setIsLoading(false);
@@ -48,6 +48,7 @@ function FetchProducts() {
     getData();
   }, []);
 
+  console.log(products);
   if (isLoading) {
     return <div>Loading posts</div>;
   }
