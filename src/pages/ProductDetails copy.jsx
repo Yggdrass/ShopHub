@@ -41,11 +41,8 @@ const ProductDetails = () => {
 
   console.log(product);
   return (
-    //Create a back Button
     <div>
-      <h1>{product.title}</h1>
-      <img src={product.imageUrl} alt={product.title} />
-      <p>{product.description}</p>
+      <h1>Single Product</h1>
     </div>
   );
 };

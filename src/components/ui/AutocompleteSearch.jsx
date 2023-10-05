@@ -1,31 +1,45 @@
 import React, { useEffect, useState } from "react";
 import "../api/Product.css";
 import ProductCard from "./ProductCard.jsx";
+import "./SearchBar.css";
 import { Autocomplete, Box, Stack, TextField } from "@mui/material";
 import ProductDetails from "../../pages/ProductDetails";
 import { Link } from "react-router-dom";
 
 const url = "https://api.noroff.dev/api/v1/online-shop";
+const Product = ({ item }) => (
+  <li className="card">
+    <Link to={`product/${item.id}`}>
+      <div>
+        <h2>{item.title}</h2>
+        <img src={item.imageUrl} alt={item.title} />
+        <p>{item.description}</p>
+      </div>
+    </Link>
+  </li>
+);
 
 function FetchProducts() {
-  const [products, setProducts] = React.useState([]);
+  const [products, setProducts] = useState([]);
+  const [searchText, setSearchText] = useState("");
   // State for holding our loading state
-  const [data, setData] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   // State for holding our error state
   const [isError, setIsError] = useState(false);
 
-  async function fetchData() {
-    const response = await fetch(url);
-    const json = await response.json();
-    console.log(json);
-    setProducts((products) => [...products, response]);
-    return;
-  }
-
   useEffect(() => {
-    fetchData();
+    fetch(url).then((res) =>
+      res.json().then((json) => {
+        setProducts(json);
+        console.log(json);
+      })
+    );
   }, []);
+
+  const filteredProducts = products.filter((item) =>
+    item.title.includes(searchText)
+  );
+  console.log("Products:", products);
 
   if (isLoading) {
     return <div>Loading posts</div>;
@@ -55,16 +69,12 @@ function FetchProducts() {
           )}
         />
       </Stack>
-      <div key={products.id}>
-        <Link to={`products/${products.id}`} element={<ProductDetails />}>
-          {products.map((products) => (
-            <div className="card">
-              <h2>{products.title}</h2>
-              <img src={products.imageUrl} alt={products.title} />
-              <p>{products.description}</p>
-            </div>
+      <div>
+        <ul>
+          {products.map((item) => (
+            <Product key={item.id} item={item} />
           ))}
-        </Link>
+        </ul>
       </div>
     </div>
   );

@@ -6,12 +6,21 @@ p {
   max-width: 28ch;
 }
 
+ul li {
+  list-style: none;
+}
+
+ul li a {
+  text-decoration: none;
+}
+
 .card {
   background-color: rgb(23, 150, 172);
   max-width: 10rem;
   padding: 0.8rem 1rem;
   margin: 1rem auto;
   border-radius: 15px;
+  text-decoration: none;
 }
 
 .result-box {
