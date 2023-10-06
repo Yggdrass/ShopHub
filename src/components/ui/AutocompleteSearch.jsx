@@ -36,9 +36,6 @@ function FetchProducts() {
     );
   }, []);
 
-  const filteredProducts = products.filter((item) =>
-    item.title.includes(searchText)
-  );
   console.log("Products:", products);
 
   if (isLoading) {
@@ -49,6 +46,11 @@ function FetchProducts() {
     return <div>Error loading data</div>;
   }
   console.log(products);
+
+  const filteredProducts = products.filter((item) =>
+    item.title.includes(searchText)
+  );
+  console.log(filteredProducts);
   return (
     <div>
       <Stack sx={{ width: 300, margin: "auto" }}>
@@ -67,11 +69,14 @@ function FetchProducts() {
           renderInput={(params) => (
             <TextField {...params} label="Search for products" />
           )}
+          onChange={(event) => {
+            setSearchText(event.target.value);
+          }}
         />
       </Stack>
       <div>
         <ul>
-          {products.map((item) => (
+          {filteredProducts.map((item) => (
             <Product key={item.id} item={item} />
           ))}
         </ul>
