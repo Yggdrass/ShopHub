@@ -14,7 +14,25 @@ input {
   background-color: transparent;
   border: none;
   height: 100%;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   width: 100%;
   margin-left: 5px;
+}
+
+.errorMessage {
+  background-color: red;
+  color: white;
+  border-radius: 5px;
+  padding: 0.3rem;
+}
+
+label {
+  font-size: 2rem;
+  text-transform: uppercase;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

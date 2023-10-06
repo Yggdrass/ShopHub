@@ -5,7 +5,7 @@ import { Product } from "../components/ui/AutocompleteSearch";
 const CartPage = () => {
   const { cart } = useContext(CartContext);
   return (
-    <div className="page-wrapper">
+    <div>
       <h1>Cart Page</h1>
       <div>
         <ul>

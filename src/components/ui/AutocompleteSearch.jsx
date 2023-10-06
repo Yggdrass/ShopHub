@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
-import "../api/Product.css";
-import ProductCard from "./ProductCard.jsx";
-import "./SearchBar.css";
-import { Autocomplete, Box, Stack, TextField } from "@mui/material";
-import ProductDetails from "../../pages/ProductDetails";
+import { Autocomplete, Box, ListItem, Stack, TextField } from "@mui/material";
 import { Link } from "react-router-dom";
+import "../api/Product.css";
+import "./SearchBar.css";
 
 const url = "https://api.noroff.dev/api/v1/online-shop";
-const Product = ({ item }) => (
+export const Product = ({ item }) => (
   <li className="card">
     <Link to={`product/${item.id}`}>
       <div>
@@ -45,14 +43,14 @@ function FetchProducts() {
   if (isError) {
     return <div>Error loading data</div>;
   }
-  console.log(products);
 
   const filteredProducts = products.filter((item) =>
     item.title.includes(searchText)
   );
-  console.log(filteredProducts);
+
+  console.log(JSON.stringify(filteredProducts));
   return (
-    <div>
+    <div className="page-wrapper">
       <Stack sx={{ width: 300, margin: "auto" }}>
         <Autocomplete
           id="products_list"
