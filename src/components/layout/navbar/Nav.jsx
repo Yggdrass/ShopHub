@@ -34,6 +34,10 @@ function Navbar() {
           <i class="fa-solid fa-envelope"></i>Contact Us
         </StyledLink>
 
+        <StyledLink to="/Cart">
+          <i class="fa-solid fa-cart-shopping"></i>Cart
+        </StyledLink>
+
         <StyledLink to="/Checkout">
           <i class="fa-solid fa-cart-shopping"></i>Checkout
         </StyledLink>

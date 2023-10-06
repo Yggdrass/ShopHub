@@ -8,7 +8,7 @@ import FetchProducts from "../components/api/FetchProducts";
 
 const Home = () => {
   return (
-    <div className="homePage-wrapper">
+    <div className="page-wrapper">
       <AutocompleteSearch />
     </div>
   );

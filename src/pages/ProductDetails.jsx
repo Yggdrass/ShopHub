@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { Routes, Route, Link, useParams } from "react-router-dom";
+import React, { useState, useEffect, useContext } from "react";
+import { useParams } from "react-router-dom";
 import "./Pages.modules.css";
+import { CartContext } from "../App";
 
 const url = "https://api.noroff.dev/api/v1/online-shop";
 
@@ -21,6 +22,7 @@ const ProductDetails = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const params = useParams();
+  const { setCart } = useContext(CartContext);
   console.log(params);
 
   useEffect(() => {
@@ -42,10 +44,17 @@ const ProductDetails = () => {
   console.log(product);
   return (
     //Create a back Button
-    <div>
+    <div className="page-wrapper">
       <h1>{product.title}</h1>
       <img src={product.imageUrl} alt={product.title} />
       <p>{product.description}</p>
+      <button
+        onClick={() => {
+          setCart((prevCart) => [...prevCart, product]);
+        }}
+      >
+        Add to cart
+      </button>
     </div>
   );
 };
