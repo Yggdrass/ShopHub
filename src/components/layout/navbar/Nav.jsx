@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { icon } from "@fortawesome/fontawesome-svg-core/import.macro";
 
 const Nav = styled.nav`
   display: flex;
@@ -35,7 +37,7 @@ function Navbar() {
         </StyledLink>
 
         <StyledLink to="/Cart">
-          <i class="fa-solid fa-cart-shopping"></i>Cart
+          <FontAwesomeIcon icon="fa-solid fa-cart-shopping" />
         </StyledLink>
 
         <StyledLink to="/Checkout">
