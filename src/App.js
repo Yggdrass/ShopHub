@@ -4,8 +4,8 @@ import font from "./App.module.css";
 import Home from "./pages/Home.jsx";
 import ProductDetails from "./pages/ProductDetails.jsx";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
-import CartPage from "./pages/CartPage.jsx";
-import { createContext, useState } from "react";
+import CartPage, { cartFromLocalStorage } from "./pages/CartPage.jsx";
+import { createContext, useEffect, useState } from "react";
 import ContactPage from "./pages/ContactPage.jsx";
 import ContactFormSubmitSuccess from "./pages/ContactFormSubmitSuccess.jsx";
 
@@ -22,7 +22,7 @@ function App() {
         <BrowserRouter>
           <Header />
           <Routes>
-            <Route path="product/:id" element={<ProductDetails />} />
+            <Route path="/product/:id" element={<ProductDetails />} />
             <Route path="/cart" element={<CartPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route

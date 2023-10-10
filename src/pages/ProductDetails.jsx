@@ -18,12 +18,12 @@ export default ProductPage;
 */
 
 const ProductDetails = () => {
-  const [product, setProduct] = useState({});
+  const [product, setProduct] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const params = useParams();
   const { setCart } = useContext(CartContext);
-  console.log(params);
+  //console.log(params);
 
   useEffect(() => {
     fetch(`${url}/${params.id}`)
@@ -31,7 +31,24 @@ const ProductDetails = () => {
       .then((json) => {
         setProduct(json);
       });
-  });
+  }, [params]);
+
+  const addToCart = () => {
+    const cartJson = localStorage.getItem("cart");
+    console.log(cartJson);
+    let cart = cartJson ? JSON.parse(cartJson) : [];
+
+    const cartItem = cart.find((item) => item.id === product.id);
+
+    if (cartItem) {
+      cartItem.quantity++;
+    } else {
+      product.quantity = 1;
+      cart.push(product);
+    }
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+  };
 
   if (isLoading || !product) {
     return <div>Loading</div>;
@@ -41,7 +58,8 @@ const ProductDetails = () => {
     return <div>Error</div>;
   }
 
-  console.log(product);
+  //console.log(product);
+
   return (
     //Create a back Button
     <div className="page-wrapper">
@@ -50,7 +68,8 @@ const ProductDetails = () => {
       <p>{product.description}</p>
       <button
         onClick={() => {
-          setCart((prevCart) => [...prevCart, product]);
+          //setCart((prevCart) => [...prevCart, product]);
+          addToCart();
         }}
       >
         Add to cart
