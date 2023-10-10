@@ -51,27 +51,14 @@ function FetchProducts() {
   //console.log("JSON Stringify", JSON.stringify(filteredProducts));
   return (
     <div className="page-wrapper">
-      <Stack sx={{ width: 300, margin: "auto" }}>
-        <Autocomplete
-          id="products_list"
-          getOptionLabel={(products) => `${products.title}`}
-          options={products}
-          sx={{ width: 300 }}
-          isOptionEqualToValue={(option, value) => option.title === value.title}
-          noOptionsText={"No avaliable products by that name"}
-          renderOption={(props, products) => (
-            <Box component="li" {...props} key={products.id}>
-              {products.title}
-            </Box>
-          )}
-          renderInput={(params) => (
-            <TextField {...params} label="Search for products" />
-          )}
-          onChange={(event) => {
-            setSearchText(event.target.value);
-          }}
-        />
-      </Stack>
+      <input
+        id="products_list"
+        type="text"
+        value={searchText}
+        onChange={(event) => {
+          setSearchText(event.target.value);
+        }}
+      />
       <div>
         <ul>
           {filteredProducts.map((item) => (
