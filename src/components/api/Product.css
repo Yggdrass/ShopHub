@@ -31,3 +31,14 @@ ul li a {
   width: 75rem;
   margin-top: 2rem;
 }
+
+.cart_item,
+.cart_item_quantity {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.cart_item_image {
+  max-width: 5rem;
+}

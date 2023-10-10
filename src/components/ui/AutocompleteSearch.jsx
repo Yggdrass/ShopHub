@@ -29,7 +29,7 @@ function FetchProducts() {
     fetch(url).then((res) =>
       res.json().then((json) => {
         setProducts(json);
-        console.log(json);
+        //console.log(json);
       })
     );
   }, []);
@@ -48,7 +48,7 @@ function FetchProducts() {
     item.title.includes(searchText)
   );
 
-  console.log(JSON.stringify(filteredProducts));
+  //console.log("JSON Stringify", JSON.stringify(filteredProducts));
   return (
     <div className="page-wrapper">
       <Stack sx={{ width: 300, margin: "auto" }}>

@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { LogoImage } from "../../images/index.mjs";
 import { Nav } from "../navbar/index";
 import "./Header.module.css";
+import CartPage from "../../../pages/CartPage";
 
 function Header() {
+  const [cart, setCart] = useState([]);
+
   return (
     <header>
       <LogoImage />
-      <Nav />
+      <Nav size={cart.map.length} />
     </header>
   );
 }
