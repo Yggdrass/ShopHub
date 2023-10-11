@@ -1,0 +1,11 @@
+#products_list_searchInput {
+  border: 1px solid black;
+  max-width: 30ch;
+  align-items: center;
+}
+
+.searchInput_label {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}

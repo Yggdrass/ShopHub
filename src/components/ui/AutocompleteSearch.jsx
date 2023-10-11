@@ -3,17 +3,34 @@ import { Autocomplete, Box, ListItem, Stack, TextField } from "@mui/material";
 import { Link } from "react-router-dom";
 import "../api/Product.css";
 import "./SearchBar.css";
+import "./styles/Input.css";
+import "../../pages/Pages.modules.css";
+import { Url } from "../api/url";
+import styled from "styled-components";
 
-const url = "https://api.noroff.dev/api/v1/online-shop";
+const StyledProductCard = styled(Link)`
+  text-decoration: none;
+`;
+
+const url = Url;
 export const Product = ({ item }) => (
-  <li className="card">
-    <Link to={`product/${item.id}`}>
-      <div>
-        <h2>{item.title}</h2>
+  <li>
+    <StyledProductCard to={`product/${item.id}`}>
+      <div className="card">
         <img src={item.imageUrl} alt={item.title} />
-        <p>{item.description}</p>
+        <div className="product_description">
+          <h2>{item.title}</h2>
+          <p>{item.description}</p>
+          <div>
+            <span>Price: {item.price}</span>
+            <br />
+            <span className="discounted_price">
+              Discounted Price: {item.discountedPrice}
+            </span>
+          </div>
+        </div>
       </div>
-    </Link>
+    </StyledProductCard>
   </li>
 );
 
@@ -51,20 +68,37 @@ function FetchProducts() {
   //console.log("JSON Stringify", JSON.stringify(filteredProducts));
   return (
     <div className="page-wrapper">
-      <input
-        id="products_list"
-        type="text"
-        value={searchText}
-        onChange={(event) => {
-          setSearchText(event.target.value);
-        }}
-      />
-      <div>
-        <ul>
-          {filteredProducts.map((item) => (
-            <Product key={item.id} item={item} />
-          ))}
-        </ul>
+      <div className="filtered_products">
+        <div className="searchInput_label">
+          <div>
+            <label
+              htmlFor="products_list_searchInput"
+              className="products_list_label"
+            >
+              Search for products
+            </label>
+          </div>
+          <div>
+            <input
+              name="products_list_searchInput"
+              id="products_list_searchInput"
+              type="text"
+              placeholder="Type here..."
+              value={searchText}
+              onChange={(event) => {
+                setSearchText(event.target.value);
+              }}
+            />
+          </div>
+        </div>
+        <br />
+        <div>
+          <ul>
+            {filteredProducts.map((item) => (
+              <Product key={item.id} item={item} />
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   );
