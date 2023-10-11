@@ -63,17 +63,26 @@ const ProductDetails = () => {
   return (
     //Create a back Button
     <div className="page-wrapper">
-      <h1>{product.title}</h1>
-      <img src={product.imageUrl} alt={product.title} />
-      <p>{product.description}</p>
-      <button
-        onClick={() => {
-          //setCart((prevCart) => [...prevCart, product]);
-          addToCart();
-        }}
-      >
-        Add to cart
-      </button>
+      <div className="product_details">
+        <img src={product.imageUrl} alt={product.title} />
+        <div className="product_details_description">
+          <h1>{product.title}</h1>
+          <p>{product.description}</p>
+          <div>
+            <span>Price: {product.price}</span>
+            <br />
+            <span>Discounted Price: {product.discountedPrice}</span>
+          </div>
+          <button
+            onClick={() => {
+              //setCart((prevCart) => [...prevCart, product]);
+              addToCart();
+            }}
+          >
+            Add to cart
+          </button>
+        </div>
+      </div>
     </div>
   );
 };

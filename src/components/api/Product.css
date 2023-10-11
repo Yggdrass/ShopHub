@@ -15,12 +15,31 @@ ul li a {
 }
 
 .card {
-  background-color: rgb(23, 150, 172);
-  max-width: 10rem;
-  padding: 0.8rem 1rem;
-  margin: 1rem auto;
+  padding: 0.8rem 0;
+  margin: 2rem auto;
+  max-width: 75rem;
   border-radius: 15px;
-  text-decoration: none;
+  color: black;
+  display: flex;
+  text-align: left;
+  border-bottom: 1px solid black;
+  box-shadow: 1px 5px 8px black;
+}
+
+.card:hover {
+  cursor: pointer;
+}
+
+.card h2 {
+  text-align: center;
+}
+
+.card img {
+  max-width: 20rem;
+}
+
+.discounted_price {
+  color: chartreuse;
 }
 
 .result-box {
@@ -41,4 +60,17 @@ ul li a {
 
 .cart_item_image {
   max-width: 5rem;
+}
+
+.product_description {
+  margin-left: 3rem;
+}
+
+.product_details {
+  display: inherit;
+  flex-direction: row;
+  background-color: aqua;
+}
+
+.product_details_description {
 }
