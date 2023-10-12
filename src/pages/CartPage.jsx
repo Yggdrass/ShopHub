@@ -12,6 +12,13 @@ const CartPage = () => {
   let cartList = cartJson ? JSON.parse(cartJson) : [];
   console.log("CartList", cartList);
 
+  let totalCartPrice = 0;
+
+  cartList.forEach(
+    (item) => (totalCartPrice += item.discountedPrice * item.quantity)
+  );
+  console.log("totalCartPrice", totalCartPrice);
+
   const CartLayout = () => {
     const Increment = (id) => {
       // duplicate the array from the cart state
@@ -74,7 +81,7 @@ const CartPage = () => {
                 className="cart_item_image"
               />
               <h2 key={item.id}>{item.title}</h2>
-
+              <div>Price {item.discountedPrice}</div>
               <div className="cart_item_quantity">
                 <button
                   onClick={() => {
@@ -92,7 +99,10 @@ const CartPage = () => {
                   +
                 </button>
               </div>
-              <div>{item.price}</div>
+              <div>
+                <h4>Total:</h4>
+                <h4>{item.discountedPrice * item.quantity}</h4>
+              </div>
               <div
                 onClick={() => {
                   RemoveItem(item.id);
@@ -113,6 +123,7 @@ const CartPage = () => {
     <div className="page-wrapper">
       <h1>Cart Page</h1>
       <CartLayout />
+      {totalCartPrice}
     </div>
   );
 };
