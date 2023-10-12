@@ -18,12 +18,18 @@ export default ProductPage;
 */
 
 const ProductDetails = () => {
+  //const [initialTotalPrice, setInitialTotalPrice] = useState(0);
+  let [totalPrice, setTotalPrice] = useState(
+    localStorage.getItem("totalPrice") || 0
+  );
   const [product, setProduct] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const params = useParams();
   const { setCart } = useContext(CartContext);
-  //console.log(params);
+  const [newTotal, setNewTotal] = useState((a, b) => (a += b));
+  console.log("New Total: ", newTotal);
+  console.log(totalPrice);
 
   useEffect(() => {
     fetch(`${url}/${params.id}`)
@@ -33,12 +39,31 @@ const ProductDetails = () => {
       });
   }, [params]);
 
-  const addToCart = () => {
+  const AddToCart = (id) => {
     const cartJson = localStorage.getItem("cart");
-    console.log(cartJson);
-    let cart = cartJson ? JSON.parse(cartJson) : [];
+    const totalPriceJson = localStorage.getItem("totalPrice");
+    //console.log("CartJson", cartJson);
+    console.log("TotalPriceJson", totalPriceJson);
 
-    const cartItem = cart.find((item) => item.id === product.id);
+    let cart = cartJson ? JSON.parse(cartJson) : [];
+    let newTotal = totalPriceJson ? JSON.parse(totalPriceJson) : [];
+    console.log("New Total From Json", newTotal);
+
+    //const priceItem = newTotal.find((item) => item.id === id);
+    const cartItem = cart.find((item) => item.id === id);
+
+    var cartItemPrice = product.discountedPrice;
+    //setInitialTotalPrice(cartItemPrice);
+    //console.log("CartItem Details: ", cartItem);
+    console.log("CartItem Price Details: ", cartItemPrice);
+
+    var totalCartPrice = totalPrice;
+    console.log("TotalCartPrice", totalCartPrice);
+
+    /*const initialTotalPriceItem = initialTotalPrice.find(
+      (item) => item.id === product.id
+    );*/
+    //let setNewTotalPrice = (a, b) => (a += b);
 
     if (cartItem) {
       cartItem.quantity++;
@@ -47,7 +72,42 @@ const ProductDetails = () => {
       cart.push(product);
     }
 
+    if (totalPrice === 0) {
+      setTotalPrice(cartItemPrice);
+      localStorage.setItem("totalPrice", cartItemPrice);
+    } else if (totalPrice !== 0) {
+      //const newTotalPrice = (totalCartPrice += cartItemPrice);
+      //console.log("New Total Price", newTotalPrice);
+      //setTotalPrice(newTotal);
+      setNewTotal(totalPrice, cartItemPrice);
+      localStorage.setItem("totalPrice", newTotal);
+    }
+
+    /*if (initialTotalPriceItem) {
+      initialTotalPriceItem.price++;
+    }
+
+    localStorage.setItem("initialTotalPrice", JSON.stringify(cartItemPrice));*/
     localStorage.setItem("cart", JSON.stringify(cart));
+  };
+
+  const ShowPrice = (id) => {
+    if (product.discountedPrice === product.price) {
+      return <div>{product.price}</div>;
+    } else if (product.discountedPrice !== product.price) {
+      return (
+        <div>
+          <h4>This item is on discount!</h4>
+          <div>
+            <h4>Now only for:</h4>
+            <span>{product.discountedPrice}</span>
+          </div>
+          <div>
+            <p>You save {product.price - product.discountedPrice}</p>
+          </div>
+        </div>
+      );
+    }
   };
 
   if (isLoading || !product) {
@@ -69,14 +129,12 @@ const ProductDetails = () => {
           <h1>{product.title}</h1>
           <p>{product.description}</p>
           <div>
-            <span>Price: {product.price}</span>
-            <br />
-            <span>Discounted Price: {product.discountedPrice}</span>
+            <ShowPrice />
           </div>
           <button
             onClick={() => {
               //setCart((prevCart) => [...prevCart, product]);
-              addToCart();
+              AddToCart(product.id);
             }}
           >
             Add to cart

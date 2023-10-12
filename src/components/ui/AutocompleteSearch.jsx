@@ -51,7 +51,7 @@ function FetchProducts() {
     );
   }, []);
 
-  console.log("Products:", products);
+  //console.log("Products:", products);
 
   if (isLoading) {
     return <div>Loading posts</div>;
