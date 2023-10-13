@@ -4,7 +4,10 @@ import font from "./App.module.css";
 import Home from "./pages/Home.jsx";
 import ProductDetails from "./pages/ProductDetails.jsx";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
-import CartPage, { cartFromLocalStorage } from "./pages/CartPage.jsx";
+import CartPage, {
+  CartItemIcon,
+  cartFromLocalStorage,
+} from "./pages/CartPage.jsx";
 import { createContext, useEffect, useState } from "react";
 import ContactPage from "./pages/ContactPage.jsx";
 import ContactFormSubmitSuccess from "./pages/ContactFormSubmitSuccess.jsx";
@@ -18,7 +21,7 @@ function App() {
   const value = { cart, setCart };
   return (
     <div className={font.FamilyQuicksand}>
-      <CartContext.Provider value={value}>
+      <CartContext.Provider value={<CartItemIcon />}>
         <BrowserRouter>
           <Header />
           <Routes>

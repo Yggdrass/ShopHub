@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import { CartItemIcon } from "../../../pages/CartPage";
 
 const Nav = styled.nav`
   display: flex;
@@ -37,10 +38,6 @@ function Navbar({ size }) {
   const updatedCartList = [...cartList];
   console.log("Cart List in Nav", updatedCartList);
 
-  let total = 0;
-
-  cartList.forEach((item) => (total += item.quantity));
-
   return (
     <Nav>
       <NavUl>
@@ -52,7 +49,9 @@ function Navbar({ size }) {
 
         <StyledLink to="/Cart">
           <FontAwesomeIcon icon={faCartShopping} />
-          <span>{total}</span>
+          <span>
+            <CartItemIcon />
+          </span>
         </StyledLink>
 
         <StyledLink to="/Checkout">

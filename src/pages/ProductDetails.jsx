@@ -89,6 +89,7 @@ const ProductDetails = () => {
 
     localStorage.setItem("initialTotalPrice", JSON.stringify(cartItemPrice));*/
     localStorage.setItem("cart", JSON.stringify(cart));
+    window.location.reload(true);
   };
 
   const ShowPrice = (id) => {

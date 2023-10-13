@@ -3,6 +3,16 @@ import { CartContext } from "../App";
 import { Product } from "../components/ui/AutocompleteSearch";
 import { Table } from "@mui/material";
 
+export const CartItemIcon = () => {
+  let totalCartItemsIcon = 0;
+  const cartJson = localStorage.getItem("cart");
+  console.log("CartJson", cartJson);
+  let cartList = cartJson ? JSON.parse(cartJson) : [];
+
+  cartList.forEach((item) => (totalCartItemsIcon += item.quantity));
+  return totalCartItemsIcon;
+};
+
 const CartPage = () => {
   //const { cart } = useContext(CartContext);
   const [product, setProduct] = useState([]);
@@ -36,6 +46,7 @@ const CartPage = () => {
       // Update the state and local storage
       setCart(updatedCartList);
       localStorage.setItem("cart", JSON.stringify(updatedCartList));
+      window.location.reload(true);
     };
 
     const Decrement = (id) => {
@@ -54,6 +65,7 @@ const CartPage = () => {
       // Update the state and local storage
       setCart(updatedCartList);
       localStorage.setItem("cart", JSON.stringify(updatedCartList));
+      window.location.reload(true);
     };
 
     const RemoveItem = (id) => {
@@ -68,6 +80,7 @@ const CartPage = () => {
 
       // Update the state and local storage
       setCart(updatedCartList);
+      window.location.reload(true);
     };
 
     return (
