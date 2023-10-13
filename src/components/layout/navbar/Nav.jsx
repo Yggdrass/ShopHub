@@ -31,12 +31,12 @@ function Navbar({ size }) {
   const [product, setProduct] = useState([]);
   const [cart, setCart] = useState([]);
   const cartJson = localStorage.getItem("cart");
-  console.log("CartJson", cartJson);
+  //console.log("CartJson", cartJson);
   let cartList = cartJson ? JSON.parse(cartJson) : [];
-  console.log("CartList", cartList);
+  //console.log("CartList", cartList);
   // duplicate the array from the cart state
   const updatedCartList = [...cartList];
-  console.log("Cart List in Nav", updatedCartList);
+  //console.log("Cart List in Nav", updatedCartList);
 
   return (
     <Nav>

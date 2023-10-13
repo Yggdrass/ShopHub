@@ -6,7 +6,7 @@ import { Table } from "@mui/material";
 export const CartItemIcon = () => {
   let totalCartItemsIcon = 0;
   const cartJson = localStorage.getItem("cart");
-  console.log("CartJson", cartJson);
+  //console.log("CartJson", cartJson);
   let cartList = cartJson ? JSON.parse(cartJson) : [];
 
   cartList.forEach((item) => (totalCartItemsIcon += item.quantity));
@@ -18,16 +18,16 @@ const CartPage = () => {
   const [product, setProduct] = useState([]);
   const [cart, setCart] = useState([]);
   const cartJson = localStorage.getItem("cart");
-  console.log("CartJson", cartJson);
+  //console.log("CartJson", cartJson);
   let cartList = cartJson ? JSON.parse(cartJson) : [];
-  console.log("CartList", cartList);
+  //console.log("CartList", cartList);
 
   let totalCartPrice = 0;
 
   cartList.forEach(
     (item) => (totalCartPrice += item.discountedPrice * item.quantity)
   );
-  console.log("totalCartPrice", totalCartPrice);
+  //console.log("totalCartPrice", totalCartPrice);
 
   const CartLayout = () => {
     const Increment = (id) => {
@@ -54,12 +54,10 @@ const CartPage = () => {
       const updatedCartList = [...cartList];
       //find the item using the passed id
       const cartItem = updatedCartList.find((item) => item.id === id);
+      console.log("Cart Without the Product Deleted: ", cartItem.quantity);
 
-      if (cartItem) {
+      if (cartItem.quantity > 0) {
         cartItem.quantity--;
-      } else {
-        product.quantity = -1;
-        updatedCartList.push(product);
       }
 
       // Update the state and local storage
@@ -72,7 +70,7 @@ const CartPage = () => {
       // duplicate the array from the cart state
       const updatedCartList = [...cartList];
       //find the item using the passed id
-      const cartItem = updatedCartList.find((item) => item.id === id);
+      /*const cartItem = updatedCartList.find((item) => item.id === id);
 
       if (cartItem) {
         localStorage.removeItem("cart", JSON.stringify(updatedCartList));
@@ -80,6 +78,11 @@ const CartPage = () => {
 
       // Update the state and local storage
       setCart(updatedCartList);
+      window.location.reload(true);*/
+
+      let temp = updatedCartList.filter((item) => item.id !== id);
+      console.log("Cart Without the Product Deleted: ", temp);
+      localStorage.setItem("cart", JSON.stringify(temp));
       window.location.reload(true);
     };
 
@@ -103,6 +106,7 @@ const CartPage = () => {
                 >
                   -
                 </button>
+
                 <div>{item.quantity}</div>
                 <button
                   onClick={() => {
