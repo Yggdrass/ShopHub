@@ -4,21 +4,14 @@ import font from "./App.module.css";
 import Home from "./pages/Home.jsx";
 import ProductDetails from "./pages/ProductDetails.jsx";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
-import CartPage, {
-  CartItemIcon,
-  cartFromLocalStorage,
-} from "./pages/CartPage.jsx";
-import { createContext, useEffect, useState } from "react";
+import CartPage, { CartItemIcon } from "./pages/CartPage.jsx";
+import { createContext } from "react";
 import ContactPage from "./pages/ContactPage.jsx";
 import ContactFormSubmitSuccess from "./pages/ContactFormSubmitSuccess.jsx";
 
 export const CartContext = createContext([]);
 
 function App() {
-  const [cart, setCart] = useState([]);
-  // Use useEffect to check for localstorage cart, if there is then load that info
-
-  const value = { cart, setCart };
   return (
     <div className={font.FamilyQuicksand}>
       <CartContext.Provider value={<CartItemIcon />}>
