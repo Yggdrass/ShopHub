@@ -26,10 +26,6 @@ ul li a {
   box-shadow: 1px 5px 8px black;
 }
 
-.card:hover {
-  cursor: pointer;
-}
-
 .card h2 {
   text-align: center;
 }
