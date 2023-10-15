@@ -110,6 +110,62 @@ const ProductDetails = () => {
       );
     }
   };
+  const Reviews = () => {
+    let productReviews = product.reviews;
+    console.log(productReviews);
+
+    return (
+      <div>
+        {/* Render the fetched data */}
+        {productReviews ? (
+          (
+            <ul>
+              {productReviews.map((item) => (
+                <li key={item.id}>
+                  <div>
+                    <h4>Reviews:</h4>
+                    <div>
+                      <h4>Rating:</h4>
+                      <span>{item.rating}</span>
+                    </div>
+                    <div>
+                      <p>{item.description}</p>
+                    </div>
+                    <div>
+                      <p>User: {item.username}</p>
+                    </div>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          ) || <div>There are no reviews</div>
+        ) : (
+          <p>Loading...</p>
+        )}
+      </div>
+    );
+    /*if (product.reviews) {
+      var productReviews = product.reviews;
+      console.log(productReviews);
+      console.log(productReviews[0].rating);
+      for (let i = 0; i < productReviews.length; i++)
+        <div>
+          <h4>Reviews:</h4>
+          <div>
+            <h4>Rating:</h4>
+            <span>{productReviews[i].rating}</span>
+          </div>
+          <div>
+            <p>{productReviews[i].description}</p>
+          </div>
+          <div>
+            <p>User: {productReviews[i].username}</p>
+          </div>
+        </div>;
+    } else if (!product.reviews) {
+      return <div>No reviews</div>;
+    }*/
+  };
 
   if (isLoading || !product) {
     return <div>Loading</div>;
@@ -140,6 +196,12 @@ const ProductDetails = () => {
           >
             Add to cart
           </button>
+        </div>
+        <div>
+          <h4>Reviews:</h4>
+          <p>
+            <Reviews /> <div>No Reviews</div>
+          </p>
         </div>
       </div>
     </div>
