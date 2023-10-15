@@ -3,6 +3,6 @@ header {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  margin: 0 20rem 0 20rem;
-  background-color: yellow;
+  margin: 0 2rem;
+  background-color: transparent;
 }

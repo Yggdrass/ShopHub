@@ -9,6 +9,7 @@ import { createContext } from "react";
 import ContactPage from "./pages/ContactPage.jsx";
 import ContactFormSubmitSuccess from "./pages/ContactFormSubmitSuccess.jsx";
 import { CartItemsCount } from "./components/ui/CartItemsCount.jsx";
+import CheckoutSuccessPage from "./pages/CheckoutSuccessPage.jsx";
 
 export const CartContext = createContext([]);
 
@@ -25,6 +26,10 @@ function App() {
             <Route
               path="/contact/contactFormSubmitSuccess"
               element={<ContactFormSubmitSuccess />}
+            />
+            <Route
+              path="/cart/checkoutSuccess"
+              element={<CheckoutSuccessPage />}
             />
             <Route path="/" element={<Home />} />
           </Routes>

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import "../api/Product.css";
+import "./styles/Product.css";
 import "./SearchBar.css";
 import "./styles/Input.css";
 import "../../pages/Pages.modules.css";
-import { Url } from "../api/url";
 import { Product } from "./Product";
+import { Url } from "../api/url";
 
 const url = Url;
 
@@ -47,7 +47,7 @@ function FetchProducts() {
               Search for products
             </label>
           </div>
-          <div>
+          <div className="products_list_searchInput">
             <input
               name="products_list_searchInput"
               id="products_list_searchInput"

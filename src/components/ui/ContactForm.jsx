@@ -6,7 +6,7 @@ import "./styles/Input.css";
 import "../../pages/Pages.modules.css";
 import { Button } from "@mui/material";
 
-const StyledSubmitContactFormButton = styled(Button)`
+const StyledSubmitContactFormButton = styled(Link)`
   text-decoration: none;
   border: 2px solid white;
   padding: 0.5rem;
@@ -14,6 +14,7 @@ const StyledSubmitContactFormButton = styled(Button)`
   background-color: green;
   color: white;
   margin-top: 3rem;
+  font-size: 4rem
   cursor: pointer;
 `;
 
@@ -87,63 +88,73 @@ const ContactForm = () => {
     <div className="container">
       <h1>Contact Form</h1>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="firstName">First name</label>
-        <input
-          type="text"
-          name="firstName"
-          placeholder="Type your first name here..."
-          autocomplete="off"
-          onChange={handleChange}
-        />
-        {errors.firstName && <span>{errors.firstName}</span>}
+        <div className="input_div">
+          <label htmlFor="firstName">First name</label>
+          <input
+            type="text"
+            name="firstName"
+            placeholder="Type your first name here..."
+            autocomplete="off"
+            onChange={handleChange}
+          />
+          {errors.firstName && <span>{errors.firstName}</span>}
+        </div>
 
         <br />
 
-        <label htmlFor="lastName">Last name</label>
-        <input
-          type="text"
-          name="lastName"
-          placeholder="Type your last name here..."
-          autocomplete="off"
-          onChange={handleChange}
-        />
-        {errors.lastName && <span>{errors.lastName}</span>}
+        <div className="input_div">
+          <label htmlFor="lastName">Last name</label>
+          <input
+            type="text"
+            name="lastName"
+            placeholder="Type your last name here..."
+            autocomplete="off"
+            onChange={handleChange}
+          />
+          {errors.lastName && <span>{errors.lastName}</span>}
+        </div>
 
         <br />
 
-        <label htmlFor="email">Your email</label>
-        <input
-          type="text"
-          name="email"
-          placeholder="Type a valid email..."
-          autocomplete="off"
-          onChange={handleChange}
-        />
-        {errors.email && <span>{errors.email}</span>}
+        <div className="input_div">
+          <label htmlFor="email">Your email</label>
+          <input
+            type="text"
+            name="email"
+            placeholder="Type a valid email..."
+            autocomplete="off"
+            onChange={handleChange}
+          />
+          {errors.email && <span>{errors.email}</span>}
+        </div>
 
         <br />
 
-        <label htmlFor="subject">Subject</label>
-        <input
-          type="text"
-          name="subject"
-          placeholder="Type the title of your message here..."
-          autocomplete="off"
-          onChange={handleChange}
-        />
-        {errors.subject && <span>{errors.subject}</span>}
+        <div className="input_div">
+          <label htmlFor="subject">Subject</label>
+          <input
+            type="text"
+            name="subject"
+            placeholder="Type the title of your message here..."
+            autocomplete="off"
+            onChange={handleChange}
+          />
+          {errors.subject && <span>{errors.subject}</span>}
+        </div>
 
         <br />
 
-        <label htmlFor="body">Body</label>
-        <input
-          type="text"
-          name="body"
-          placeholder="Type your message here..."
-          autocomplete="off"
-          onChange={handleChange}
-        />
-        {errors.body && <span>{errors.body}</span>}
+        <div className="input_div">
+          <label htmlFor="body">Body</label>
+          <input
+            type="text"
+            name="body"
+            placeholder="Type your message here..."
+            autocomplete="off"
+            onChange={handleChange}
+          />
+          {errors.body && <span>{errors.body}</span>}
+        </div>
 
         <br />
 

@@ -1,24 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import "./Pages.modules.css";
+import "../components/ui/styles/Buttons.css";
 import { CartContext } from "../App";
 
 const url = "https://api.noroff.dev/api/v1/online-shop";
 
-/*const ProductPage = () => {
-  const [products, setProducts] = useState([]);
-  return (
-    <div className="productPage-wrapper">
-      <h1>{products.title}</h1>
-    </div>
-  );
-};
-
-export default ProductPage;
-*/
-
 const ProductDetails = () => {
-  //const [initialTotalPrice, setInitialTotalPrice] = useState(0);
   let [totalPrice, setTotalPrice] = useState(
     localStorage.getItem("totalPrice") || 0
   );
@@ -101,7 +89,7 @@ const ProductDetails = () => {
           <h4>This item is on discount!</h4>
           <div>
             <h4>Now only for:</h4>
-            <span>{product.discountedPrice}</span>
+            <p>{product.discountedPrice}</p>
           </div>
           <div>
             <p>You save {product.price - product.discountedPrice}</p>
@@ -123,8 +111,7 @@ const ProductDetails = () => {
               {productReviews.map((item) => (
                 <li key={item.id}>
                   <div>
-                    <h4>Reviews:</h4>
-                    <div>
+                    <div className="rating">
                       <h4>Rating:</h4>
                       <span>{item.rating}</span>
                     </div>
@@ -144,27 +131,6 @@ const ProductDetails = () => {
         )}
       </div>
     );
-    /*if (product.reviews) {
-      var productReviews = product.reviews;
-      console.log(productReviews);
-      console.log(productReviews[0].rating);
-      for (let i = 0; i < productReviews.length; i++)
-        <div>
-          <h4>Reviews:</h4>
-          <div>
-            <h4>Rating:</h4>
-            <span>{productReviews[i].rating}</span>
-          </div>
-          <div>
-            <p>{productReviews[i].description}</p>
-          </div>
-          <div>
-            <p>User: {productReviews[i].username}</p>
-          </div>
-        </div>;
-    } else if (!product.reviews) {
-      return <div>No reviews</div>;
-    }*/
   };
 
   if (isLoading || !product) {
@@ -178,7 +144,6 @@ const ProductDetails = () => {
   //console.log(product);
 
   return (
-    //Create a back Button
     <div className="page-wrapper">
       <div className="product_details">
         <img src={product.imageUrl} alt={product.title} />
@@ -188,20 +153,20 @@ const ProductDetails = () => {
           <div>
             <ShowPrice />
           </div>
-          <button
-            onClick={() => {
-              //setCart((prevCart) => [...prevCart, product]);
-              AddToCart(product.id);
-            }}
-          >
-            Add to cart
-          </button>
+          <div className="button_div">
+            <button
+              className="AddToCartButton"
+              onClick={() => {
+                AddToCart(product.id);
+              }}
+            >
+              Add to cart
+            </button>
+          </div>
         </div>
         <div>
           <h4>Reviews:</h4>
-          <p>
-            <Reviews /> <div>No Reviews</div>
-          </p>
+          <p>{<Reviews /> || <div>No Reviews</div>}</p>
         </div>
       </div>
     </div>
