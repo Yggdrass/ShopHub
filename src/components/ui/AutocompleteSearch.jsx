@@ -35,11 +35,6 @@ function FetchProducts() {
     return <div>Error loading data</div>;
   }
 
-  let filteredProducts = products.filter((item) =>
-    item.title.includes(searchText)
-  );
-
-  //console.log("JSON Stringify", JSON.stringify(filteredProducts));
   return (
     <div className="page-wrapper">
       <div className="filtered_products">

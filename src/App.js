@@ -23,7 +23,7 @@ function App() {
             <Route path="/cart" element={<CartPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route
-              path="/contactFormSubmitSuccess"
+              path="/contact/contactFormSubmitSuccess"
               element={<ContactFormSubmitSuccess />}
             />
             <Route path="/" element={<Home />} />
