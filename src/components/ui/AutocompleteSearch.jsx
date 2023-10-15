@@ -1,56 +1,12 @@
 import React, { useEffect, useState } from "react";
-import {
-  Autocomplete,
-  Box,
-  Button,
-  ListItem,
-  Stack,
-  TextField,
-} from "@mui/material";
-import { Link } from "react-router-dom";
 import "../api/Product.css";
 import "./SearchBar.css";
 import "./styles/Input.css";
 import "../../pages/Pages.modules.css";
 import { Url } from "../api/url";
-import styled from "styled-components";
-
-const StyledViewProductButton = styled(Link)`
-  text-decoration: none;
-  border: 2px solid white;
-  padding: 0.5rem;
-  border-radius: 25px;
-  background-color: green;
-  color: white;
-  margin-top: 3rem;
-  cursor: pointer;
-`;
+import { Product } from "./Product";
 
 const url = Url;
-export const Product = ({ item }) => (
-  <li>
-    <div className="card">
-      <img src={item.imageUrl} alt={item.title} />
-      <div className="product_description">
-        <h2>{item.title}</h2>
-        <p>{item.description}</p>
-        <div>
-          <span>Price: {item.price}</span>
-          <br />
-          <span className="discounted_price">
-            Discounted Price: {item.discountedPrice}
-          </span>
-        </div>
-        <br />
-        <div>
-          <StyledViewProductButton component={Link} to={`product/${item.id}`}>
-            view product
-          </StyledViewProductButton>
-        </div>
-      </div>
-    </div>
-  </li>
-);
 
 function FetchProducts() {
   const [products, setProducts] = useState([]);
@@ -79,7 +35,7 @@ function FetchProducts() {
     return <div>Error loading data</div>;
   }
 
-  const filteredProducts = products.filter((item) =>
+  let filteredProducts = products.filter((item) =>
     item.title.includes(searchText)
   );
 
@@ -112,9 +68,15 @@ function FetchProducts() {
         <br />
         <div>
           <ul>
-            {filteredProducts.map((item) => (
-              <Product key={item.id} item={item} />
-            ))}
+            {products
+              .filter((item) => {
+                return searchText.toLowerCase() === ""
+                  ? item
+                  : item.title.toLowerCase();
+              })
+              .map((item) => (
+                <Product key={item.id} item={item} />
+              ))}
           </ul>
         </div>
       </div>

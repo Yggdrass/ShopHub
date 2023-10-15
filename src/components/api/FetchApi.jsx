@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Url } from "./url";
-import Product from "../ui/ProductCard";
+import Product from "../ui/ProductDetailsPage";
 
 const url = Url;
 console.log("URL: ", url);
