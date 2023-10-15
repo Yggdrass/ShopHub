@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
-import { CartItemIcon } from "../../../pages/CartPage";
+import { CartItemsCount } from "../../ui/CartItemsCount";
 
 const Nav = styled.nav`
   display: flex;
@@ -50,7 +50,7 @@ function Navbar({ size }) {
         <StyledLink to="/Cart">
           <FontAwesomeIcon icon={faCartShopping} />
           <span>
-            <CartItemIcon />
+            <CartItemsCount />
           </span>
         </StyledLink>
 
