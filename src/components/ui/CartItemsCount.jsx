@@ -1,5 +1,5 @@
 export const CartItemsCount = () => {
-  let totalCartItemsIcon = 0;
+  let totalCartItemsIcon = null;
   const cartJson = localStorage.getItem("cart");
   //console.log("CartJson", cartJson);
   let cartList = cartJson ? JSON.parse(cartJson) : [];

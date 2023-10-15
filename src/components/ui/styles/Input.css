@@ -1,11 +1,28 @@
 #products_list_searchInput {
   border: 1px solid black;
-  max-width: 30ch;
-  align-items: center;
+  max-width: 25ch;
 }
 
-.searchInput_label {
+.products_list_searchInput {
+  align-items: center;
+  margin: auto;
+  background-color: white;
+}
+
+.products_list_label {
   display: flex;
   flex-direction: column;
   text-align: center;
+  background-color: white;
+  font-size: 3rem;
+}
+
+input {
+  background-color: white;
+  max-width: 25rem;
+  gap: 1rem;
+}
+
+.input_div {
+  margin: 1rem auto;
 }

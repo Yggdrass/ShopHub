@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import "../api/Product.css";
+import "./styles/Product.css";
 import "./SearchBar.css";
 import "./styles/Input.css";
 import "../../pages/Pages.modules.css";
-import { Url } from "../api/url";
 import { Product } from "./Product";
+import { Url } from "../api/url";
 
 const url = Url;
 
@@ -35,11 +35,6 @@ function FetchProducts() {
     return <div>Error loading data</div>;
   }
 
-  let filteredProducts = products.filter((item) =>
-    item.title.includes(searchText)
-  );
-
-  //console.log("JSON Stringify", JSON.stringify(filteredProducts));
   return (
     <div className="page-wrapper">
       <div className="filtered_products">
@@ -52,7 +47,7 @@ function FetchProducts() {
               Search for products
             </label>
           </div>
-          <div>
+          <div className="products_list_searchInput">
             <input
               name="products_list_searchInput"
               id="products_list_searchInput"

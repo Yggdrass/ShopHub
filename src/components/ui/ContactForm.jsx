@@ -1,133 +1,168 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import styled from "styled-components";
+import "./styles/Buttons.css";
+import "./styles/Input.css";
+import "../../pages/Pages.modules.css";
+import { Button } from "@mui/material";
+
+const StyledSubmitContactFormButton = styled(Link)`
+  text-decoration: none;
+  border: 2px solid white;
+  padding: 0.5rem;
+  border-radius: 25px;
+  background-color: green;
+  color: white;
+  margin-top: 3rem;
+  font-size: 4rem
+  cursor: pointer;
+`;
 
 const ContactForm = () => {
-  const initialValues = {
+  const navigate = useNavigate();
+
+  const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
     email: "",
     subject: "",
-    description: "",
-  };
-  const [formValues, setFormValues] = useState(initialValues);
-  const [formErrors, setFormErrors] = useState({});
-  const [isSubmit, setIsSubmit] = useState(false);
-  const navigate = useNavigate();
+    body: "",
+  });
+
+  const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormValues({ ...formValues, [name]: value });
-    console.log(formValues);
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setFormErrors(validateForm(formValues));
-    setIsSubmit(true);
-    console.log(formValues);
-    if (isSubmit === true) {
-      navigate("/contactFormSubmitSuccess");
-    }
-  };
-
-  useEffect(() => {
-    if (Object.keys(formErrors).length === 0 && isSubmit) {
-      console.log(formValues);
-    }
-  });
-
-  const validateForm = (values) => {
-    const errors = {};
+    const validationErrors = {};
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
 
-    //First Name input errors:
-    if (!values.firstName) {
-      errors.firstName = "First name is required";
-    } else if (values.firstName.length < 3) {
-      errors.firstName = "First name must be minimum 3 characters";
+    if (!formData.firstName.trim()) {
+      validationErrors.firstName = "First name is required";
+    } else if (formData.firstName.length < 3) {
+      validationErrors.firstName =
+        "Your first name must be longer than 3 characters";
     }
 
-    //Last Name input errors:
-    if (!values.lastName) {
-      errors.lastName = "Last name is required";
-    } else if (values.lastName.length < 3) {
-      errors.lastName = "Last name must be minimum 3 characters";
+    if (!formData.lastName.trim()) {
+      validationErrors.lastName = "Last name is required";
+    } else if (formData.lastName.length < 3) {
+      validationErrors.lastName =
+        "Your last name must be longer than 3 characters";
     }
 
-    //Email input errors:
-    if (!values.email) {
-      errors.email = "email is required";
-    } else if (!regex.test(values.email)) {
-      errors.email = "Email format is not valid!";
+    if (!formData.email.trim()) {
+      validationErrors.email = "Email is required";
+    } else if (!regex.test(formData.email)) {
+      validationErrors.email = "This is not a valid email";
     }
 
-    //Subject input errors:
-    if (!values.subject) {
-      errors.subject = "A subject is required";
-    } else if (values.subject.length < 3) {
-      errors.subject = "The subject must be minimum 3 characters";
+    if (!formData.subject.trim()) {
+      validationErrors.subject = "A subject is required";
+    } else if (formData.subject.length < 3) {
+      validationErrors.subject = "The subject must be longer than 3 characters";
     }
 
-    //Description input errors:
-    if (!values.desccription) {
-      errors.description = "A description is required";
-    } else if (values.description.length < 3) {
-      errors.description = "The description must be minimum 3 characters";
+    if (!formData.body.trim()) {
+      validationErrors.body = "A body name is required";
+    } else if (formData.body.length < 3) {
+      validationErrors.body = "The body must be longer than 3 characters";
     }
 
-    return errors;
+    setErrors(validationErrors);
+
+    if (Object.keys(validationErrors).length === 0) {
+      alert("Form submitted successfully");
+      navigate(`/contact/contactFormSubmitSuccess`);
+    }
   };
 
   return (
     <div className="container">
       <h1>Contact Form</h1>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="firstName">First name</label>
-        <input
-          name="firstName"
-          value={formValues.firstName}
-          placeholder="Type your first name here..."
-          onChange={handleChange}
-        />
-        <p className="errorMessage">{formErrors.firstName}</p>
+        <div className="input_div">
+          <label htmlFor="firstName">First name</label>
+          <input
+            type="text"
+            name="firstName"
+            placeholder="Type your first name here..."
+            autocomplete="off"
+            onChange={handleChange}
+          />
+          {errors.firstName && <span>{errors.firstName}</span>}
+        </div>
 
-        <label htmlFor="lastName">Last name</label>
-        <input
-          name="lastName"
-          value={formValues.lastName}
-          placeholder="Type your last name here..."
-          onChange={handleChange}
-        />
-        <p className="errorMessage">{formErrors.lastName}</p>
+        <br />
 
-        <label htmlFor="email">Your email</label>
-        <input
-          name="email"
-          value={formValues.email}
-          placeholder="Type a valid email..."
-          onChange={handleChange}
-        />
-        <p className="errorMessage">{formErrors.email}</p>
+        <div className="input_div">
+          <label htmlFor="lastName">Last name</label>
+          <input
+            type="text"
+            name="lastName"
+            placeholder="Type your last name here..."
+            autocomplete="off"
+            onChange={handleChange}
+          />
+          {errors.lastName && <span>{errors.lastName}</span>}
+        </div>
 
-        <label htmlFor="subject">Subject</label>
-        <input
-          name="subject"
-          value={formValues.subject}
-          placeholder="Type the title of your message here..."
-          onChange={handleChange}
-        />
-        <p className="errorMessage">{formErrors.subject}</p>
+        <br />
 
-        <label htmlFor="description">Description</label>
-        <input
-          name="description"
-          value={formValues.description}
-          placeholder="Type your message here..."
-          onChange={handleChange}
-        />
-        <p className="errorMessage">{formErrors.description}</p>
+        <div className="input_div">
+          <label htmlFor="email">Your email</label>
+          <input
+            type="text"
+            name="email"
+            placeholder="Type a valid email..."
+            autocomplete="off"
+            onChange={handleChange}
+          />
+          {errors.email && <span>{errors.email}</span>}
+        </div>
 
-        <button>Submit</button>
+        <br />
+
+        <div className="input_div">
+          <label htmlFor="subject">Subject</label>
+          <input
+            type="text"
+            name="subject"
+            placeholder="Type the title of your message here..."
+            autocomplete="off"
+            onChange={handleChange}
+          />
+          {errors.subject && <span>{errors.subject}</span>}
+        </div>
+
+        <br />
+
+        <div className="input_div">
+          <label htmlFor="body">Body</label>
+          <input
+            type="text"
+            name="body"
+            placeholder="Type your message here..."
+            autocomplete="off"
+            onChange={handleChange}
+          />
+          {errors.body && <span>{errors.body}</span>}
+        </div>
+
+        <br />
+
+        <div className="button_div">
+          <StyledSubmitContactFormButton type="submit">
+            Submit Form
+          </StyledSubmitContactFormButton>
+        </div>
       </form>
     </div>
   );

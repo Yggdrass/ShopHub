@@ -1,14 +1,16 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import "./styles/Product.css";
 
 const StyledViewProductButton = styled(Link)`
   text-decoration: none;
+  font-size: 1.5rem;
   border: 2px solid white;
-  padding: 0.5rem;
+  padding: 1rem;
+  text-transform: uppercase;
   border-radius: 25px;
   background-color: green;
   color: white;
-  margin-top: 3rem;
   cursor: pointer;
 `;
 
@@ -27,7 +29,7 @@ export const Product = ({ item }) => (
           </span>
         </div>
         <br />
-        <div>
+        <div className="button_div">
           <StyledViewProductButton component={Link} to={`product/${item.id}`}>
             view product
           </StyledViewProductButton>

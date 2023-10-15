@@ -2,6 +2,9 @@ import React, { useContext, useSta, useState } from "react";
 import { CartContext } from "../App";
 import { Product } from "../components/ui/AutocompleteSearch";
 import { Table } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import "./Pages.modules.css";
+import "../components/ui/styles/Product.css";
 
 const CartPage = () => {
   //const { cart } = useContext(CartContext);
@@ -18,6 +21,15 @@ const CartPage = () => {
     (item) => (totalCartPrice += item.discountedPrice * item.quantity)
   );
   //console.log("totalCartPrice", totalCartPrice);
+
+  const navigate = useNavigate();
+
+  const handleCheckout = () => {
+    localStorage.clear("cart");
+
+    navigate(`/cart/checkoutSuccess`);
+    window.location.reload(true);
+  };
 
   const CartLayout = () => {
     const Increment = (id) => {
@@ -87,9 +99,10 @@ const CartPage = () => {
                 className="cart_item_image"
               />
               <h2 key={item.id}>{item.title}</h2>
-              <div>Price {item.discountedPrice}</div>
+              <span>Price {item.discountedPrice}</span>
               <div className="cart_item_quantity">
                 <button
+                  className="increment_decrement_button"
                   onClick={() => {
                     Decrement(item.id);
                   }}
@@ -97,8 +110,9 @@ const CartPage = () => {
                   -
                 </button>
 
-                <div>{item.quantity}</div>
+                <p>{item.quantity}</p>
                 <button
+                  className="increment_decrement_button"
                   onClick={() => {
                     Increment(item.id);
                   }}
@@ -111,6 +125,7 @@ const CartPage = () => {
                 <h4>{item.discountedPrice * item.quantity}</h4>
               </div>
               <div
+                className="remove_item"
                 onClick={() => {
                   RemoveItem(item.id);
                 }}
@@ -130,7 +145,21 @@ const CartPage = () => {
     <div className="page-wrapper">
       <h1>Cart Page</h1>
       <CartLayout />
-      {totalCartPrice}
+      <br />
+      <div className="total_cart_value">
+        <h2>Total cart value:</h2>
+        <h2>{totalCartPrice}</h2>
+      </div>
+      <div className="button_div_checkout">
+        <button
+          className="checkOutButton"
+          onClick={() => {
+            handleCheckout();
+          }}
+        >
+          Checkout
+        </button>
+      </div>
     </div>
   );
 };

@@ -1,0 +1,27 @@
+.button_div {
+  margin: 2rem auto;
+}
+
+.AddToCartButton,
+.checkOutButton {
+  background-color: green;
+  color: white;
+  text-transform: uppercase;
+  border-radius: 15px;
+  padding: 1rem;
+  font-size: 2rem;
+}
+
+.increment_decrement_button {
+  font-size: 3rem;
+  background-color: white;
+}
+
+.remove_item {
+  background-color: red;
+  color: white;
+  text-transform: uppercase;
+  border-radius: 15px;
+  padding: 1rem;
+  font-size: 2rem;
+}
