@@ -1,5 +1,4 @@
 # SHOPHUB 
- <img src="Logo.png" width="50"/> 
 <img src="shophub_productsList.png" width="1280"/>
 
 This was a Javascript Frameworks CA. We were tasked with creating an ecom website where users can search products by title, add the products to a cart and successfully checkout. Also they would be able to submit a contact form. 
