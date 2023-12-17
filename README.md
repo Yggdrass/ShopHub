@@ -1,70 +1,32 @@
-# Getting Started with Create React App
+# Shophub
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![image](https://user-images.githubusercontent.com/52622303/164316813-4b12d99f-aeb7-4069-85cf-e72b3a50ac99.png)
 
-## Available Scripts
+This was a Javascript Frameworks CA. We were tasked with creating an ecom website where users can search products by title, add the products to a cart and successfully checkout. Also they would be able to submit a contact form. 
 
-In the project directory, you can run:
+## Description
 
-### `npm start`
+The user can search products by title. This is done by typing letters in the search input field and then the filtered list will be displayed with the matching products. Each product card provides an image, description and a price. If the price is discounted, this will be sorted through a function and displayed instead of the regular price.
+When the user clicks on the "view product" button, they will be taken to a products details page, where more detailed information about the product will be displayed. Here the user can click on a button to add one item of the product to the cart. The total amount of products added to the cart will be shown next to the "cart" link in the navigation menu.
+On the cart page all products will be displayed by product name. Every product is calculated to a total amount and then all of the total amounts are calculated to a total sum for the entire cart. Next to the total sum, the user can click a checkout button. This will clear the local storage and send the user to a new page with a message of a successful checkout.
+On the contact page, there is a contact form the user need to fill out if they want to send a message to the website. There are requirements for the different inputs, and if they are not met then the user is given an error message explaining what they need to do. When all required fields are correctly filled, then the form can be submitted successfully.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Built With
 
-### `npm test`
+- CSS
+- HTML
+- React
+- Javascript
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## Getting Started
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Installing and running
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+In the repo, press the green code button and then open the project on github desktop. After you then have cloned it to your device, open the project in VS-code or other desired coding software. In the projects terminal, type and run "npm i". After this type "npm start" in the same terminal and the website will open in a new tab in your local browser.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## Contact
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+If you have any questions or otherwise want to get in touch, you can reach me on my email: audunroald@gmail.com.
