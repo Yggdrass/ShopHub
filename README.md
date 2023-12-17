@@ -1,6 +1,6 @@
 # Shophub
 
-![image](https://user-images.githubusercontent.com/52622303/164316813-4b12d99f-aeb7-4069-85cf-e72b3a50ac99.png)
+<img src="shophub_productsList.png" width="1280"/>
 
 This was a Javascript Frameworks CA. We were tasked with creating an ecom website where users can search products by title, add the products to a cart and successfully checkout. Also they would be able to submit a contact form. 
 
