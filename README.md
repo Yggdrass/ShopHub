@@ -1,4 +1,4 @@
- <img src="Logo.png" width="200"/> # SHOPHUB 
+ <img src="Logo.png" width="50"/> # SHOPHUB 
 
 <img src="shophub_productsList.png" width="1280"/>
 
